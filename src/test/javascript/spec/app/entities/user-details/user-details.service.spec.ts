@@ -5,7 +5,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import { UserDetailsService } from 'app/entities/user-details/user-details.service';
-import { IUserDetails, UserDetails } from 'app/shared/model/user-details.model';
+import { IUserDetails, UserDetails, RepaymentMethod } from 'app/shared/model/user-details.model';
 
 describe('Service Tests', () => {
     describe('UserDetails Service', () => {
@@ -21,7 +21,7 @@ describe('Service Tests', () => {
             service = injector.get(UserDetailsService);
             httpMock = injector.get(HttpTestingController);
 
-            elemDefault = new UserDetails(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+            elemDefault = new UserDetails(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', RepaymentMethod.AVALANCHE);
         });
 
         describe('Service methods', async () => {
@@ -57,7 +57,8 @@ describe('Service Tests', () => {
                     {
                         firstName: 'BBBBBB',
                         lastName: 'BBBBBB',
-                        email: 'BBBBBB'
+                        email: 'BBBBBB',
+                        repaymentMethod: 'BBBBBB'
                     },
                     elemDefault
                 );
@@ -76,7 +77,8 @@ describe('Service Tests', () => {
                     {
                         firstName: 'BBBBBB',
                         lastName: 'BBBBBB',
-                        email: 'BBBBBB'
+                        email: 'BBBBBB',
+                        repaymentMethod: 'BBBBBB'
                     },
                     elemDefault
                 );

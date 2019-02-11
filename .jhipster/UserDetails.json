@@ -12,6 +12,11 @@
         {
             "fieldName": "email",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "repaymentMethod",
+            "fieldType": "RepaymentMethod",
+            "fieldValues": "AVALANCHE,SNOWBALL,CUSTOM"
         }
     ],
     "relationships": [

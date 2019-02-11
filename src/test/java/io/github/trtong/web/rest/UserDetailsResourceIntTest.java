@@ -31,6 +31,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import io.github.trtong.domain.enumeration.RepaymentMethod;
 /**
  * Test class for the UserDetailsResource REST controller.
  *
@@ -48,6 +49,9 @@ public class UserDetailsResourceIntTest {
 
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
+
+    private static final RepaymentMethod DEFAULT_REPAYMENT_METHOD = RepaymentMethod.AVALANCHE;
+    private static final RepaymentMethod UPDATED_REPAYMENT_METHOD = RepaymentMethod.SNOWBALL;
 
     @Autowired
     private UserDetailsRepository userDetailsRepository;
@@ -93,7 +97,8 @@ public class UserDetailsResourceIntTest {
         UserDetails userDetails = new UserDetails()
             .firstName(DEFAULT_FIRST_NAME)
             .lastName(DEFAULT_LAST_NAME)
-            .email(DEFAULT_EMAIL);
+            .email(DEFAULT_EMAIL)
+            .repaymentMethod(DEFAULT_REPAYMENT_METHOD);
         return userDetails;
     }
 
@@ -120,6 +125,7 @@ public class UserDetailsResourceIntTest {
         assertThat(testUserDetails.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
         assertThat(testUserDetails.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testUserDetails.getEmail()).isEqualTo(DEFAULT_EMAIL);
+        assertThat(testUserDetails.getRepaymentMethod()).isEqualTo(DEFAULT_REPAYMENT_METHOD);
     }
 
     @Test
@@ -154,7 +160,8 @@ public class UserDetailsResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(userDetails.getId().intValue())))
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
+            .andExpect(jsonPath("$.[*].repaymentMethod").value(hasItem(DEFAULT_REPAYMENT_METHOD.toString())));
     }
     
     @Test
@@ -170,7 +177,8 @@ public class UserDetailsResourceIntTest {
             .andExpect(jsonPath("$.id").value(userDetails.getId().intValue()))
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
+            .andExpect(jsonPath("$.repaymentMethod").value(DEFAULT_REPAYMENT_METHOD.toString()));
     }
 
     @Test
@@ -196,7 +204,8 @@ public class UserDetailsResourceIntTest {
         updatedUserDetails
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
-            .email(UPDATED_EMAIL);
+            .email(UPDATED_EMAIL)
+            .repaymentMethod(UPDATED_REPAYMENT_METHOD);
 
         restUserDetailsMockMvc.perform(put("/api/user-details")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -210,6 +219,7 @@ public class UserDetailsResourceIntTest {
         assertThat(testUserDetails.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testUserDetails.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testUserDetails.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testUserDetails.getRepaymentMethod()).isEqualTo(UPDATED_REPAYMENT_METHOD);
     }
 
     @Test
