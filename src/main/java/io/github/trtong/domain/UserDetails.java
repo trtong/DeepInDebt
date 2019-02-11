@@ -10,6 +10,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+import io.github.trtong.domain.enumeration.RepaymentMethod;
+
 /**
  * A UserDetails.
  */
@@ -32,6 +34,10 @@ public class UserDetails implements Serializable {
 
     @Column(name = "email")
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "repayment_method")
+    private RepaymentMethod repaymentMethod;
 
     @ManyToOne
     @JsonIgnoreProperties("userDetails")
@@ -85,6 +91,19 @@ public class UserDetails implements Serializable {
         this.email = email;
     }
 
+    public RepaymentMethod getRepaymentMethod() {
+        return repaymentMethod;
+    }
+
+    public UserDetails repaymentMethod(RepaymentMethod repaymentMethod) {
+        this.repaymentMethod = repaymentMethod;
+        return this;
+    }
+
+    public void setRepaymentMethod(RepaymentMethod repaymentMethod) {
+        this.repaymentMethod = repaymentMethod;
+    }
+
     public User getUser() {
         return user;
     }
@@ -126,6 +145,7 @@ public class UserDetails implements Serializable {
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", email='" + getEmail() + "'" +
+            ", repaymentMethod='" + getRepaymentMethod() + "'" +
             "}";
     }
 }

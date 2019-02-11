@@ -15,6 +15,18 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'user-details',
                 loadChildren: './user-details/user-details.module#DeepInDebtUserDetailsModule'
+            },
+            {
+                path: 'loan',
+                loadChildren: './loan/loan.module#DeepInDebtLoanModule'
+            },
+            {
+                path: 'payment',
+                loadChildren: './payment/payment.module#DeepInDebtPaymentModule'
+            },
+            {
+                path: 'user-details',
+                loadChildren: './user-details/user-details.module#DeepInDebtUserDetailsModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])

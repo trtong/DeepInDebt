@@ -10,10 +10,17 @@ entity Payment {
     amount Long
 }
 
+enum RepaymentMethod {
+	AVALANCHE,
+    SNOWBALL,
+    CUSTOM
+}
+
 entity UserDetails {
 	firstName String,
 	lastName String,
-	email String
+	email String,
+    repaymentMethod RepaymentMethod
 }
 
 relationship ManyToOne {
