@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="loan">
+            <h2><span>Loan</span> {{loan.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Servicer</span></dt>
+                <dd>
+                    <span>{{loan.servicer}}</span>
+                </dd>
+                <dt><span>Principal</span></dt>
+                <dd>
+                    <span>{{loan.principal}}</span>
+                </dd>
+                <dt><span>Interest</span></dt>
+                <dd>
+                    <span>{{loan.interest}}</span>
+                </dd>
+                <dt><span>Payment Due Date</span></dt>
+                <dd>
+                    <span>{{loan.paymentDueDate}}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{loan.user?.id}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/loan', loan.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
